@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLOBAL TECNOLOGIA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Orbitron', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+
+    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+    header { text-align: center; padding: 80px 20px 40px; }
+    header h1 { font-size: 4rem; background: linear-gradient(90deg, #00f, #ff0, #0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: neon 2s infinite alternate; font-family: 'Orbitron', sans-serif; }
+    @keyframes neon {
+      0% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff; }
+      50% { text-shadow: 0 0 10px #ff0, 0 0 20px #ff0, 0 0 30px #ff0, 0 0 50px #ff0; }
+      100% { text-shadow: 0 0 5px #00f, 0 0 10px #00f, 0 0 20px #00f, 0 0 40px #00f; }
+    }
+
+    nav { display: flex; justify-content: center; gap: 30px; padding: 20px; flex-wrap: wrap; }
+    nav a { color: #0ff; text-decoration: none; font-size: 1.2rem; transition: 0.3s; }
+    nav a:hover { color: #ff0; text-shadow: 0 0 10px #ff0, 0 0 20px #ff0; }
+
+    section { max-width: 1000px; margin: 40px auto; padding: 20px; text-align: center; }
+    .card { background: rgba(255, 255, 255, 0.05); border: 1px solid #0ff; padding: 20px; border-radius: 15px; margin: 20px 0; transition: 0.3s; }
+    .card:hover { border-color: #ff0; box-shadow: 0 0 20px #ff0; }
+
+    .btn { display: inline-block; padding: 12px 30px; margin: 10px; color: #0ff; border: 2px solid #0ff; border-radius: 30px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+    .btn:hover { color: #ff0; border-color: #ff0; box-shadow: 0 0 10px #ff0, 0 0 20px #ff0; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 10px; border: 1px solid #0ff; }
+    th { background-color: #00f; color: #fff; }
+    td { background-color: rgba(0, 255, 255, 0.1); }
+
+    footer { text-align: center; padding: 40px 20px; color: #888; font-size: 0.9rem; }
+
+    /* FAQ */
+    .faq h3 { color: #fff; cursor: pointer; margin: 10px 0; }
+    .faq p { color: #ff0; display: none; margin-bottom: 10px; }
+
+    /* Botão flutuante WhatsApp */
+    #whatsapp-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 15px #25D366, 0 0 30px #25D366 inset;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+    #whatsapp-btn img {
+      width: 40px;
+      height: 40px;
+    }
+    #whatsapp-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #ff0, 0 0 50px #ff0 inset;
+    }
+
+    @media(max-width:600px){ header h1 { font-size: 2.5rem; } nav a { font-size: 1rem; } }
+  </style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<header>
+  <h1>GLOBAL TECNOLOGIA</h1>
+</header>
+
+<nav>
+  <a href="#sobre">Sobre</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#planos">Planos</a>
+  <a href="#contato">Contato</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<section id="sobre">
+  <div class="card">
+    <h2>Sobre a Global Tecnologia</h2>
+    <p>CNPJ: 42.745.358/0001-93 | Fundação: 16/07/2021 | Sede: Rua Pedro Mendes, nº 27, Centro – Paulo Afonso/BA</p>
+    <p>A Global Tecnologia oferece soluções de rastreamento veicular baseadas em tecnologia, conectividade e inovação, permitindo total autonomia para clientes individuais ou frotas. A empresa é focada em tecnologia e telemetria, não em segurança privada.</p>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="card">
+    <h2>Portfólio de Serviços</h2>
+    <ul>
+      <li>Licença de software de gestão e telemetria</li>
+      <li>Fornecimento de chip M2M</li>
+      <li>Fornecimento de dispositivo rastreador (opcional)</li>
+      <li>Suporte técnico para utilização da plataforma</li>
+      <li>Indicação de técnicos especializados para instalação</li>
+    </ul>
+  </div>
+</section>
+
+<section id="planos">
+  <div class="card">
+    <h2>Planos e Preços</h2>
+    <table>
+      <tr><th>Plano</th><th>Mensalidade</th><th>Anual</th></tr>
+      <tr><td>Individual – Kit Completo</td><td>R$30,00</td><td>R$328,15</td></tr>
+      <tr><td>Dispositivo Avulso</td><td>R$30,00</td><td>R$328,15</td></tr>
+      <tr><td>Frota 1 veículo</td><td>R$30,00</td><td>-</td></tr>
+      <tr><td>Frota 2 a 10 veículos</td><td>R$20,00 cada</td><td>-</td></tr>
+      <tr><td>Frota 11 a 20 veículos</td><td>R$15,00 cada</td><td>-</td></tr>
+      <tr><td>Frota 21 ou mais veículos</td><td>R$10,00 cada</td><td>-</td></tr>
+    </table>
+    <a href="https://wa.me/5575988515825" class="btn">Solicitar Cotação</a>
+    <div>
+      <a href="https://play.google.com/store/apps/details?id=com.app.globalrastreamento.net" class="btn">Baixar App Android</a>
+      <a href="https://apps.apple.com/br/app/global-manager/id6744368781" class="btn">Baixar App iOS</a>
+      <a href="https://globalrastreamento.net.br/login/" class="btn">Acessar Plataforma</a>
+    </div>
+  </div>
+</section>
+
+<section id="numeros">
+  <div class="card">
+    <h2>Números da Empresa</h2>
+    <p>Veículos rastreados: 1400+</p>
+    <p>Clientes atendidos: 450+</p>
+    <p>Anos de serviço: 4</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="card faq">
+    <h2>FAQ - Perguntas Frequentes</h2>
+    <h3>1. A Global realiza monitoramento?</h3>
+    <p>Não, oferecemos a plataforma e autonomia para que o cliente tenha sua própria central.</p>
+    <h3>2. Posso usar meu próprio rastreador?</h3>
+    <p>Sim, você pode configurar qualquer rastreador compatível com a plataforma.</p>
+    <h3>3. Vocês indicam técnicos para instalação?</h3>
+    <p>Sim, indicamos técnicos especializados, mas não realizamos a instalação diretamente.</p>
+    <h3>4. Qual tipo de chip é utilizado?</h3>
+    <p>Usamos chip M2M, que garante conectividade estável e segura.</p>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="card">
+    <h2>Contato</h2>
+    <p>Daniel Ibraim: <a href="tel:+5575988190527">75988190527</a></p>
+    <p>E-mail: <a href="mailto:globalrastreamento2020@gmail.com">globalrastreamento2020@gmail.com</a></p>
+    <p>WhatsApp: <a href="https://wa.me/5575988515825">75 98851-5825</a></p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Global Rastreamento Tecnologia</p>
+  <p><a href="#">Política de Privacidade</a></p>
+  <p><a href="#">Google Play</a> | <a href="#">App Store</a> | <a href="#">YouTube</a> | <a href="#">Instagram</a></p>
+</footer>
+
+<!-- Botão flutuante WhatsApp -->
+<a href="https://wa.me/5575988515825" target="_blank" id="whatsapp-btn">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq h3').forEach(item => {
+    item.addEventListener('click', () => {
+      const p = item.nextElementSibling;
+      p.style.display = (p.style.display === 'block') ? 'none' : 'block';
+    });
+  });
+
+  // Canvas futurista de partículas
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+  const particleCount = 100;
+
+  for(let i=0;i<particleCount;i++){
+    particles.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*2+1,
+      dx: (Math.random()-0.5)*2,
+      dy: (Math.random()-0.5)*2
+    });
+  }
+
+  function animate(){
+    ctx.fillStyle = 'rgba(10,10,10,0.2)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = '#0ff';
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if(p.x<0||p.x>canvas.width) p.dx*=-1;
+      if(p.y<0||p.y>canvas.height) p.dy*=-1;
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+</body>
+</html>
