@@ -1,227 +1,257 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GLOBAL TECNOLOGIA</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Rastreamento</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Orbitron', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
-
-    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-
-    header { text-align: center; padding: 80px 20px 40px; }
-    header h1 { font-size: 4rem; background: linear-gradient(90deg, #00f, #ff0, #0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: neon 2s infinite alternate; font-family: 'Orbitron', sans-serif; }
-    @keyframes neon {
-      0% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff; }
-      50% { text-shadow: 0 0 10px #ff0, 0 0 20px #ff0, 0 0 30px #ff0, 0 0 50px #ff0; }
-      100% { text-shadow: 0 0 5px #00f, 0 0 10px #00f, 0 0 20px #00f, 0 0 40px #00f; }
-    }
-
-    nav { display: flex; justify-content: center; gap: 30px; padding: 20px; flex-wrap: wrap; }
-    nav a { color: #0ff; text-decoration: none; font-size: 1.2rem; transition: 0.3s; }
-    nav a:hover { color: #ff0; text-shadow: 0 0 10px #ff0, 0 0 20px #ff0; }
-
-    section { max-width: 1000px; margin: 40px auto; padding: 20px; text-align: center; }
-    .card { background: rgba(255, 255, 255, 0.05); border: 1px solid #0ff; padding: 20px; border-radius: 15px; margin: 20px 0; transition: 0.3s; }
-    .card:hover { border-color: #ff0; box-shadow: 0 0 20px #ff0; }
-
-    .btn { display: inline-block; padding: 12px 30px; margin: 10px; color: #0ff; border: 2px solid #0ff; border-radius: 30px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-    .btn:hover { color: #ff0; border-color: #ff0; box-shadow: 0 0 10px #ff0, 0 0 20px #ff0; }
-
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { padding: 10px; border: 1px solid #0ff; }
-    th { background-color: #00f; color: #fff; }
-    td { background-color: rgba(0, 255, 255, 0.1); }
-
-    footer { text-align: center; padding: 40px 20px; color: #888; font-size: 0.9rem; }
-
-    /* FAQ */
-    .faq h3 { color: #fff; cursor: pointer; margin: 10px 0; }
-    .faq p { color: #ff0; display: none; margin-bottom: 10px; }
-
-    /* Botão flutuante WhatsApp */
-    #whatsapp-btn {
+    .whatsapp-float {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 15px #25D366, 0 0 30px #25D366 inset;
-      transition: 0.3s;
-      z-index: 1000;
-    }
-    #whatsapp-btn img {
-      width: 40px;
-      height: 40px;
-    }
-    #whatsapp-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px #ff0, 0 0 50px #ff0 inset;
+      bottom: 20px;
+      right: 20px;
+      z-index: 50;
     }
 
-    @media(max-width:600px){ header h1 { font-size: 2.5rem; } nav a { font-size: 1rem; } }
+    /* Animações FadeIn para cards */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.7s forwards;
+    }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay:0.3s; }
+    .delay-400 { animation-delay:0.4s; }
+
+    /* Botão WhatsApp Premium */
+    @keyframes bounceSlow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-bounce-slow {
+      animation: bounceSlow 2s infinite ease-in-out;
+    }
+    .whatsapp-float div {
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.6), 0 0 30px rgba(37, 211, 102, 0.3);
+    }
   </style>
 </head>
-<body>
+<body class="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white font-sans">
 
-<canvas id="bg"></canvas>
+  <!-- Header -->
+  <header class="flex justify-between items-center px-8 py-6 border-b border-gray-700">
+    <h1 class="text-2xl font-bold text-cyan-400">🚀 Global Rastreamento</h1>
+    <nav class="space-x-6">
+      <a href="#home" class="hover:text-cyan-400 transition">Home</a>
+      <a href="#plans" class="hover:text-cyan-400 transition">Planos</a>
+      <a href="#faq" class="hover:text-cyan-400 transition">FAQ</a>
+      <a href="https://globalrastreamento.net.br/login/" target="_blank" class="hover:text-cyan-400 transition">Plataforma</a>
+      <a href="https://play.google.com/store/apps/details?id=com.app.globalrastreamento.net" target="_blank" class="hover:text-cyan-400 transition">Android</a>
+      <a href="https://apps.apple.com/br/app/global-manager/id6744368781" target="_blank" class="hover:text-cyan-400 transition">iOS</a>
+      <a href="https://privacy.globalrastreamento.net.br/" target="_blank" class="hover:text-cyan-400 transition">Privacidade</a>
+    </nav>
+  </header>
 
-<header>
-  <h1>GLOBAL TECNOLOGIA</h1>
-</header>
+  <!-- Hero Section -->
+  <section id="home" class="text-center py-20 px-6">
+    <h2 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
+      Autonomia Total para Gestão Veicular
+    </h2>
+    <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
+      A Global Rastreamento fornece tecnologia para que você seja o gestor do
+      seu veículo ou frota — sem depender de centrais de monitoramento.
+    </p>
+    <a href="https://globalrastreamento.net.br/login/" target="_blank">
+      <button class="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-black rounded-xl transition">
+        Explorar Plataforma
+      </button>
+    </a>
+  </section>
 
-<nav>
-  <a href="#sobre">Sobre</a>
-  <a href="#servicos">Serviços</a>
-  <a href="#planos">Planos</a>
-  <a href="#contato">Contato</a>
-  <a href="#faq">FAQ</a>
-</nav>
-
-<section id="sobre">
-  <div class="card">
-    <h2>Sobre a Global Tecnologia</h2>
-    <p>CNPJ: 42.745.358/0001-93 | Fundação: 16/07/2021 | Sede: Rua Pedro Mendes, nº 27, Centro – Paulo Afonso/BA</p>
-    <p>A Global Tecnologia oferece soluções de rastreamento veicular baseadas em tecnologia, conectividade e inovação, permitindo total autonomia para clientes individuais ou frotas. A empresa é focada em tecnologia e telemetria, não em segurança privada.</p>
-  </div>
-</section>
-
-<section id="servicos">
-  <div class="card">
-    <h2>Portfólio de Serviços</h2>
-    <ul>
-      <li>Licença de software de gestão e telemetria</li>
-      <li>Fornecimento de chip M2M</li>
-      <li>Fornecimento de dispositivo rastreador (opcional)</li>
-      <li>Suporte técnico para utilização da plataforma</li>
-      <li>Indicação de técnicos especializados para instalação</li>
-    </ul>
-  </div>
-</section>
-
-<section id="planos">
-  <div class="card">
-    <h2>Planos e Preços</h2>
-    <table>
-      <tr><th>Plano</th><th>Mensalidade</th><th>Anual</th></tr>
-      <tr><td>Individual – Kit Completo</td><td>R$30,00</td><td>R$328,15</td></tr>
-      <tr><td>Dispositivo Avulso</td><td>R$30,00</td><td>R$328,15</td></tr>
-      <tr><td>Frota 1 veículo</td><td>R$30,00</td><td>-</td></tr>
-      <tr><td>Frota 2 a 10 veículos</td><td>R$20,00 cada</td><td>-</td></tr>
-      <tr><td>Frota 11 a 20 veículos</td><td>R$15,00 cada</td><td>-</td></tr>
-      <tr><td>Frota 21 ou mais veículos</td><td>R$10,00 cada</td><td>-</td></tr>
-    </table>
-    <a href="https://wa.me/5575988515825" class="btn">Solicitar Cotação</a>
-    <div>
-      <a href="https://play.google.com/store/apps/details?id=com.app.globalrastreamento.net" class="btn">Baixar App Android</a>
-      <a href="https://apps.apple.com/br/app/global-manager/id6744368781" class="btn">Baixar App iOS</a>
-      <a href="https://globalrastreamento.net.br/login/" class="btn">Acessar Plataforma</a>
+  <!-- Cards Section -->
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 px-10 pb-24">
+    <div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
+      <h3 class="text-xl font-bold text-cyan-400 mb-4">O que oferecemos</h3>
+      <ul class="list-disc list-inside text-gray-300">
+        <li>Sistema de rastreamento completo (web + app)</li>
+        <li>Chip M2M para conectividade</li>
+        <li>Configuração de rastreadores 4G</li>
+        <li>Indicação de fornecedores e técnicos</li>
+      </ul>
     </div>
-  </div>
-</section>
 
-<section id="numeros">
-  <div class="card">
-    <h2>Números da Empresa</h2>
-    <p>Veículos rastreados: 1400+</p>
-    <p>Clientes atendidos: 450+</p>
-    <p>Anos de serviço: 4</p>
-  </div>
-</section>
+    <div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
+      <h3 class="text-xl font-bold text-red-400 mb-4">O que não oferecemos</h3>
+      <ul class="list-disc list-inside text-gray-300">
+        <li>Monitoramento 24h</li>
+        <li>Central de suporte contínuo</li>
+        <li>Gestão terceirizada da sua frota</li>
+      </ul>
+    </div>
 
-<section id="faq">
-  <div class="card faq">
-    <h2>FAQ - Perguntas Frequentes</h2>
-    <h3>1. A Global realiza monitoramento?</h3>
-    <p>Não, oferecemos a plataforma e autonomia para que o cliente tenha sua própria central.</p>
-    <h3>2. Posso usar meu próprio rastreador?</h3>
-    <p>Sim, você pode configurar qualquer rastreador compatível com a plataforma.</p>
-    <h3>3. Vocês indicam técnicos para instalação?</h3>
-    <p>Sim, indicamos técnicos especializados, mas não realizamos a instalação diretamente.</p>
-    <h3>4. Qual tipo de chip é utilizado?</h3>
-    <p>Usamos chip M2M, que garante conectividade estável e segura.</p>
-  </div>
-</section>
+    <div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
+      <h3 class="text-xl font-bold text-cyan-400 mb-4">Para quem é indicado</h3>
+      <ul class="list-disc list-inside text-gray-300">
+        <li>Uso pessoal — acompanhar seu veículo em tempo real</li>
+        <li>Empresas que desejam gerir frota de forma independente</li>
+      </ul>
+    </div>
 
-<section id="contato">
-  <div class="card">
-    <h2>Contato</h2>
-    <p>Daniel Ibraim: <a href="tel:+5575988190527">75988190527</a></p>
-    <p>E-mail: <a href="mailto:globalrastreamento2020@gmail.com">globalrastreamento2020@gmail.com</a></p>
-    <p>WhatsApp: <a href="https://wa.me/5575988515825">75 98851-5825</a></p>
-  </div>
-</section>
+    <div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
+      <h3 class="text-xl font-bold text-yellow-400 mb-4">Vantagens</h3>
+      <ul class="list-disc list-inside text-gray-300">
+        <li>Autonomia total de gestão</li>
+        <li>Redução de custos sem mensalidade</li>
+        <li>Escalabilidade para crescer junto com sua frota</li>
+        <li>Tecnologia robusta e confiável</li>
+      </ul>
+    </div>
+  </section>
 
-<footer>
-  <p>&copy; 2025 Global Rastreamento Tecnologia</p>
-  <p><a href="#">Política de Privacidade</a></p>
-  <p><a href="#">Google Play</a> | <a href="#">App Store</a> | <a href="#">YouTube</a> | <a href="#">Instagram</a></p>
-</footer>
+  <!-- Funcionalidades Section -->
+  <section id="features" class="px-10 pb-24">
+    <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">🛠️ Funcionalidades da Plataforma</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-<!-- Botão flutuante WhatsApp -->
-<a href="https://wa.me/5575988515825" target="_blank" id="whatsapp-btn">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-</a>
+      <div class="bg-gray-900 p-6 rounded-xl border border-gray-700 transform transition duration-500 hover:scale-105 hover:shadow-xl opacity-0 animate-fadeIn">
+        <h3 class="text-xl font-bold text-cyan-400 mb-2">📱 Mensagens de Status do Veículo</h3>
+        <p class="text-gray-300 text-sm">
+          Receba notificações automáticas sobre o status dos veículos no aplicativo, plataforma web, WhatsApp e Telegram. Muito utilizada pelos licenciados, trazendo praticidade no dia a dia.
+        </p>
+      </div>
 
-<script>
-  // FAQ toggle
-  document.querySelectorAll('.faq h3').forEach(item => {
-    item.addEventListener('click', () => {
-      const p = item.nextElementSibling;
-      p.style.display = (p.style.display === 'block') ? 'none' : 'block';
-    });
-  });
+      <div class="bg-gray-900 p-6 rounded-xl border border-gray-700 transform transition duration-500 hover:scale-105 hover:shadow-xl opacity-0 animate-fadeIn delay-100">
+        <h3 class="text-xl font-bold text-cyan-400 mb-2">🗺️ Cerca Virtual Tradicional</h3>
+        <p class="text-gray-300 text-sm">
+          Crie áreas de segurança no mapa e receba alertas sempre que o veículo entrar ou sair da zona definida, garantindo maior controle e monitoramento.
+        </p>
+      </div>
 
-  // Canvas futurista de partículas
-  const canvas = document.getElementById('bg');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+      <div class="bg-gray-900 p-6 rounded-xl border border-gray-700 transform transition duration-500 hover:scale-105 hover:shadow-xl opacity-0 animate-fadeIn delay-200">
+        <h3 class="text-xl font-bold text-cyan-400 mb-2">🛑 Cerca Virtual com Bloqueio</h3>
+        <p class="text-gray-300 text-sm">
+          Além do alerta da cerca virtual tradicional, permite o bloqueio automático do veículo caso ele saia da área pré-configurada, oferecendo mais segurança e prevenção.
+        </p>
+      </div>
 
-  let particles = [];
-  const particleCount = 100;
+      <div class="bg-gray-900 p-6 rounded-xl border border-gray-700 transform transition duration-500 hover:scale-105 hover:shadow-xl opacity-0 animate-fadeIn delay-300">
+        <h3 class="text-xl font-bold text-cyan-400 mb-2">🛠️ Gestão de Manutenção do Veículo</h3>
+        <p class="text-gray-300 text-sm">
+          Programe e acompanhe serviços como troca de óleo, manutenção preventiva e preditiva. Mantém os veículos sempre em dia, reduzindo custos inesperados e aumentando a vida útil da frota.
+        </p>
+      </div>
 
-  for(let i=0;i<particleCount;i++){
-    particles.push({
-      x: Math.random()*canvas.width,
-      y: Math.random()*canvas.height,
-      r: Math.random()*2+1,
-      dx: (Math.random()-0.5)*2,
-      dy: (Math.random()-0.5)*2
-    });
-  }
+      <div class="bg-gray-900 p-6 rounded-xl border border-gray-700 md:col-span-2 transform transition duration-500 hover:scale-105 hover:shadow-xl opacity-0 animate-fadeIn delay-400">
+        <h3 class="text-xl font-bold text-cyan-400 mb-2">🔗 Link de Compartilhamento</h3>
+        <p class="text-gray-300 text-sm">
+          Compartilhe em tempo real a localização do veículo com qualquer pessoa por um período definido. Muito útil em entregas, transporte de passageiros ou situações que exigem transparência no trajeto.
+        </p>
+      </div>
 
-  function animate(){
-    ctx.fillStyle = 'rgba(10,10,10,0.2)';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle = '#0ff';
-      ctx.fill();
-      p.x += p.dx;
-      p.y += p.dy;
-      if(p.x<0||p.x>canvas.width) p.dx*=-1;
-      if(p.y<0||p.y>canvas.height) p.dy*=-1;
-    });
-    requestAnimationFrame(animate);
-  }
-  animate();
+    </div>
+  </section>
 
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-</script>
+  <!-- Planos Section -->
+  <section id="plans" class="px-10 pb-24 text-center">
+    <h2 class="text-3xl font-bold text-cyan-400 mb-6">💰 Planos e Preços</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border border-gray-700 rounded-lg text-gray-300">
+        <thead class="bg-gray-800">
+          <tr>
+            <th class="px-4 py-2 border-b border-gray-600">Plano</th>
+            <th class="px-4 py-2 border-b border-gray-600">Mensalidade</th>
+            <th class="px-4 py-2 border-b border-gray-600">Anual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-700">
+            <td class="px-4 py-2">Individual – Kit Completo</td>
+            <td class="px-4 py-2">R$30,00</td>
+            <td class="px-4 py-2">R$328,15</td>
+          </tr>
+          <tr class="border-b border-gray-700">
+            <td class="px-4 py-2">Dispositivo Avulso</td>
+            <td class="px-4 py-2">R$30,00</td>
+            <td class="px-4 py-2">R$328,15</td>
+          </tr>
+          <tr class="border-b border-gray-700">
+            <td class="px-4 py-2">Frota 1 veículo</td>
+            <td class="px-4 py-2">R$30,00</td>
+            <td class="px-4 py-2">-</td>
+          </tr>
+          <tr class="border-b border-gray-700">
+            <td class="px-4 py-2">Frota 2 a 10 veículos</td>
+            <td class="px-4 py-2">R$20,00 cada</td>
+            <td class="px-4 py-2">-</td>
+          </tr>
+          <tr class="border-b border-gray-700">
+            <td class="px-4 py-2">Frota 11 a 20 veículos</td>
+            <td class="px-4 py-2">R$15,00 cada</td>
+            <td class="px-4 py-2">-</td>
+          </tr>
+          <tr class="border-b border-gray-700">
+            <td class="px-4 py-2">Frota 21 ou mais veículos</td>
+            <td class="px-4 py-2">R$10,00 cada</td>
+            <td class="px-4 py-2">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="px-10 pb-24">
+    <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">❓ FAQ</h2>
+    <div class="space-y-4 max-w-2xl mx-auto">
+      <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+        <summary class="cursor-pointer font-semibold text-cyan-400">
+          A Global Rastreamento ainda faz monitoramento 24h?
+        </summary>
+        <p class="mt-2 text-gray-300">
+          Não. Nosso modelo mudou. Agora oferecemos apenas o sistema de rastreamento para que você seja o gestor da sua própria central.
+        </p>
+      </details>
+      <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+        <summary class="cursor-pointer font-semibold text-cyan-400">
+          Preciso contratar uma central de monitoramento?
+        </summary>
+        <p class="mt-2 text-gray-300">
+          Não é obrigatório. O sistema é feito para dar autonomia. Mas, se desejar, pode contratar técnicos ou empresas parceiras.
+        </p>
+      </details>
+      <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+        <summary class="cursor-pointer font-semibold text-cyan-400">
+          Posso acompanhar meus veículos pelo celular?
+        </summary>
+        <p class="mt-2 text-gray-300">
+          Sim! Nosso app permite acompanhamento em tempo real pelo celular.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="text-center py-6 border-t border-gray-700 text-gray-500">
+    &copy; 2025 Global Rastreamento. Todos os direitos reservados.
+  </footer>
+
+  <!-- Botão Flutuante WhatsApp Premium -->
+  <a
+    href="https://wa.me/5575988190527"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Fale conosco pelo WhatsApp"
+  >
+    <div class="bg-green-500 p-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-110 hover:bg-green-400 animate-bounce-slow">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white drop-shadow-lg" viewBox="0 0 32 32" fill="currentColor">
+        <path d="M16.003 2.002c-7.733 0-14 6.268-14 14 0 2.481.652 4.901 1.891 7.03L2 30l7.14-1.862A13.938 13.938 0 0 0 16.003 30c7.732 0 14-6.267 14-14s-6.268-14-14-14zm0 2c6.627 0 12 5.373 12 12 0 6.628-5.373 12-12 12a11.93 11.93 0 0 1-6.14-1.682l-.438-.26-4.44 1.158 1.186-4.33-.285-.451a11.96 11.96 0 0 1-1.883-6.435c0-6.627 5.373-12 12-12zm5.885 7.83c-.283-.142-1.668-.82-1.926-.915-.257-.095-.445-.142-.632.143-.188.283-.726.914-.89 1.102-.164.188-.327.212-.61.07-.283-.142-1.194-.44-2.275-1.404-.84-.748-1.406-1.672-1.572-1.955-.164-.283-.017-.436.124-.578.127-.127.283-.33.424-.495.14-.165.188-.283.282-.472.095-.188.048-.354-.024-.496-.07-.142-.631-1.53-.863-2.098-.226-.54-.457-.466-.632-.474l-.54-.01c-.188 0-.495.07-.754.354s-.99.967-.99 2.36c0 1.394 1.014 2.743 1.156 2.93.142.188 1.997 3.056 4.84 4.285.677.292 1.204.465 1.616.596.679.216 1.297.185 1.786.112.545-.08 1.668-.681 1.905-1.338.236-.656.236-1.218.165-1.338-.07-.118-.26-.188-.543-.33z"/>
+      </svg>
+    </div>
+  </a>
 
 </body>
 </html>
-
