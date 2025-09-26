@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Rastreamento - Ultra Tech</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* Globais */
+* { transition: all 0.4s ease; box-sizing: border-box; }
+body { overflow-x: hidden; background: #0f2027; color:white; font-family:sans-serif; margin:0; padding:0; }
+
+/* Fundo Partículas */
+#particles { position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+
+/* Glow Neon */
+.glow-title { color:#06b6d4; text-shadow:0 0 10px #06b6d4,0 0 20px #3b82f6; }
+
+/* Hero */
+.hero-bg { position: relative; z-index:10; text-align:center; padding:6rem 1rem; }
+.hero-bg h2 { font-size:3.2rem; background: linear-gradient(90deg,#06b6d4,#3b82f6); -webkit-background-clip:text; color:transparent; text-shadow:0 0 20px rgba(6,182,212,0.7); margin:0; }
+.hero-bg p { color:#cbd5e1; max-width:800px; margin:1rem auto; font-size:1.05rem; }
+.btn-neon { background-color:#06b6d4; color:black; padding:0.9rem 1.8rem; border-radius:2rem; font-weight:bold; box-shadow:0 0 10px #06b6d4,0 0 20px #3b82f6; text-decoration:none; display:inline-block; }
+.btn-neon:hover { box-shadow:0 0 20px #06b6d4,0 0 40px #3b82f6; transform: scale(1.03); }
+
+/* Cards 3D */
+.card-3d { perspective: 1000px; margin:1rem; }
+.card-inner { background: linear-gradient(135deg,#0f172a,#1e293b); padding:1.5rem; border-radius:1rem; box-shadow:0 10px 20px rgba(0,0,0,0.5); transform: rotateX(0) rotateY(0); transition: transform 0.1s ease; }
+
+/* Scroll Reveal */
+@keyframes fadeInUp { from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
+.scroll-reveal { opacity:0; animation: fadeInUp 0.8s forwards; animation-play-state: paused; }
+
+/* Tabela Neon */
+.table-plan tbody tr:hover { background: rgba(6,182,212,0.06); box-shadow: 0 0 6px #06b6d4, 0 0 12px #3b82f6; }
+.table-plan tbody tr:hover td { color: #06b6d4; }
+
+/* Botão WhatsApp */
+.whatsapp-float { position: fixed; bottom:25px; right:25px; z-index:60; }
+.animate-bounce-slow { animation:bounceSlow 2s infinite ease-in-out; }
+@keyframes bounceSlow{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+/* Menu Mobile */
+#mobile-menu { transform: translateY(-100%); opacity:0; transition: transform 0.4s ease, opacity 0.4s ease; }
+#mobile-menu.active { transform: translateY(0); opacity:1; }
+#overlay { opacity:0; visibility:hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
+#overlay.active { opacity:1; visibility:visible; background-color: rgba(0,0,0,0.5); z-index:45; }
+
+/* Parceiros Futurista */
+.parceiros-container {
+  background: linear-gradient(135deg, #0a0f1f, #1e2a47);
+  padding: 26px 16px;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0,217,255,0.12);
+  position: relative;
+  overflow: visible;
+}
+
+.parceiros-carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+}
+.parceiros-carousel::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+.parceiros-track {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Cada logo mantém proporção */
+.parceiros-track img {
+  height: 90px;
+  max-width: 180px;
+  margin: 0;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(0,217,255,0.55));
+  transition: transform 0.25s ease, filter 0.25s ease;
+  display: inline-block;
+  vertical-align: middle;
+  background: transparent;
+  padding: 6px;
+  border-radius: 8px;
+}
+.parceiros-track img:hover {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 22px #00d9ff);
+}
+
+.parceiros-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(6,182,212,0.06);
+  border: 2px solid rgba(6,182,212,0.18);
+  color: #06b6d4;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+.parceiros-btn:hover { background: #06b6d4; color: black; border-color: #06b6d4; }
+.parceiros-btn.left { left: 8px; }
+.parceiros-btn.right { right: 8px; }
+
+@media (max-width: 1024px) {
+  .parceiros-track img { height: 70px; max-width: 140px; }
+}
+@media (max-width: 640px) {
+  .hero-bg h2 { font-size:2rem; }
+  .parceiros-track img { height: 52px; max-width: 110px; }
+  .parceiros-btn { padding:8px; }
+}
+
+/* util para esconder seção demo se necessário */
+.hidden-on-mobile { display: block; }
+@media (max-width:640px){ .hidden-on-mobile { display: none; } }
+
+</style>
+</head>
+<body>
+
+<!-- Partículas -->
+<canvas id="particles"></canvas>
+
+<!-- Overlay -->
+<div id="overlay" class=""></div>
+
+<!-- Header -->
+<header class="flex justify-between items-center px-6 py-4 border-b border-gray-700 sticky top-0 z-50 bg-gray-900/80 backdrop-blur">
+  <h1 class="text-2xl font-bold glow-title">🚀 Global Rastreamento</h1>
+  <nav class="hidden md:flex space-x-6">
+    <a href="#home" class="hover:text-cyan-300 transition">Home</a>
+    <a href="#plans" class="hover:text-cyan-300 transition">Planos</a>
+    <a href="#faq" class="hover:text-cyan-300 transition">FAQ</a>
+    <a href="https://globalrastreamento.net.br/login/" target="_blank" class="hover:text-cyan-300 transition">Plataforma</a>
+    <a href="https://play.google.com/store/apps/details?id=com.app.globalrastreamento.net" target="_blank" class="hover:text-cyan-300 transition">Android</a>
+    <a href="https://apps.apple.com/br/app/global-manager/id6744368781" target="_blank" class="hover:text-cyan-300 transition">iOS</a>
+    <a href="https://privacy.globalrastreamento.net.br/" target="_blank" class="hover:text-cyan-300 transition">Privacidade</a>
+  </nav>
+  <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none">
+    <span class="block w-8 h-0.5 bg-cyan-400 transition-all duration-300"></span>
+    <span class="block w-8 h-0.5 bg-cyan-400 transition-all duration-300"></span>
+    <span class="block w-8 h-0.5 bg-cyan-400 transition-all duration-300"></span>
+  </button>
+</header>
+
+<!-- Mobile Menu -->
+<nav id="mobile-menu" class="md:hidden fixed top-0 left-0 w-full bg-gray-900 border-b border-gray-700 z-50 px-8 py-6">
+  <ul class="flex flex-col space-y-4">
+    <li><a href="#home" class="hover:text-cyan-300 transition">Home</a></li>
+    <li><a href="#plans" class="hover:text-cyan-300 transition">Planos</a></li>
+    <li><a href="#faq" class="hover:text-cyan-300 transition">FAQ</a></li>
+    <li><a href="https://globalrastreamento.net.br/login/" target="_blank" class="hover:text-cyan-300 transition">Plataforma</a></li>
+    <li><a href="https://play.google.com/store/apps/details?id=com.app.globalrastreamento.net" target="_blank" class="hover:text-cyan-300 transition">Android</a></li>
+    <li><a href="https://apps.apple.com/br/app/global-manager/id6744368781" target="_blank" class="hover:text-cyan-300 transition">iOS</a></li>
+    <li><a href="https://privacy.globalrastreamento.net.br/" target="_blank" class="hover:text-cyan-300 transition">Privacidade</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="home" class="hero-bg">
+  <h2 class="scroll-reveal glow-title">Autonomia Total para Gestão Veicular</h2>
+  <p class="scroll-reveal delay-100">
+    A Global Rastreamento fornece tecnologia para que você seja o gestor do seu veículo ou frota — sem depender de centrais de monitoramento.
+  </p>
+  <a href="https://globalrastreamento.net.br/login/" target="_blank" class="btn-neon scroll-reveal delay-200">Explorar Plataforma</a>
+</section>
+
+<!-- Cards -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-10 pb-24">
+  <div class="card-3d scroll-reveal delay-100"><div class="card-inner">
+    <h3 class="text-xl font-bold glow-title mb-4">O que oferecemos</h3>
+    <ul class="list-disc list-inside text-gray-300">
+      <li>Sistema de rastreamento completo (web + app)</li>
+      <li>Chip M2M para conectividade</li>
+      <li>Configuração de rastreadores 4G</li>
+      <li>Indicação de fornecedores e técnicos</li>
+    </ul>
+  </div></div>
+
+  <div class="card-3d scroll-reveal delay-200"><div class="card-inner">
+    <h3 class="text-xl font-bold text-red-400 mb-4">O que não oferecemos</h3>
+    <ul class="list-disc list-inside text-gray-300">
+      <li>Monitoramento 24h</li>
+      <li>Central de suporte contínuo</li>
+      <li>Gestão terceirizada da sua frota</li>
+    </ul>
+  </div></div>
+
+  <div class="card-3d scroll-reveal delay-300"><div class="card-inner">
+    <h3 class="text-xl font-bold glow-title mb-4">Para quem é indicado</h3>
+    <ul class="list-disc list-inside text-gray-300">
+      <li>Uso pessoal — acompanhar seu veículo em tempo real</li>
+      <li>Empresas que desejam gerir frota de forma independente</li>
+    </ul>
+  </div></div>
+
+  <div class="card-3d scroll-reveal delay-400"><div class="card-inner">
+    <h3 class="text-xl font-bold text-yellow-400 mb-4">Vantagens</h3>
+    <ul class="list-disc list-inside text-gray-300">
+      <li>Autonomia total de gestão</li>
+      <li>Redução de custos sem mensalidade</li>
+      <li>Escalabilidade para crescer junto com sua frota</li>
+      <li>Tecnologia robusta e confiável</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- Funcionalidades -->
+<section id="features" class="px-10 pb-24">
+  <h2 class="text-3xl font-bold glow-title mb-6 text-center scroll-reveal">🛠️ Funcionalidades da Plataforma</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="card-3d scroll-reveal delay-100"><div class="card-inner">
+      <h3 class="text-xl font-bold glow-title mb-2">📱 Mensagens de Status do Veículo</h3>
+      <p class="text-gray-300 text-sm">Receba notificações automáticas sobre o status dos veículos no app, web, WhatsApp e Telegram.</p>
+    </div></div>
+    <div class="card-3d scroll-reveal delay-200"><div class="card-inner">
+      <h3 class="text-xl font-bold glow-title mb-2">🗺️ Cerca Virtual Tradicional</h3>
+      <p class="text-gray-300 text-sm">Crie áreas de segurança no mapa e receba alertas sempre que o veículo entrar ou sair da zona definida.</p>
+    </div></div>
+    <div class="card-3d scroll-reveal delay-300"><div class="card-inner">
+      <h3 class="text-xl font-bold glow-title mb-2">🛑 Cerca Virtual com Bloqueio</h3>
+      <p class="text-gray-300 text-sm">Permite bloqueio automático caso o veículo saia da área pré-configurada, oferecendo mais segurança.</p>
+    </div></div>
+    <div class="card-3d scroll-reveal delay-400"><div class="card-inner">
+      <h3 class="text-xl font-bold glow-title mb-2">🛠️ Gestão de Manutenção</h3>
+      <p class="text-gray-300 text-sm">Programe e acompanhe serviços como troca de óleo e manutenção preventiva para prolongar a vida útil da frota.</p>
+    </div></div>
+    <div class="card-3d scroll-reveal delay-500 md:col-span-2"><div class="card-inner">
+      <h3 class="text-xl font-bold glow-title mb-2">🔗 Link de Compartilhamento</h3>
+      <p class="text-gray-300 text-sm">Compartilhe a localização do veículo com qualquer pessoa por tempo definido. Ideal para entregas ou transporte de passageiros.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- Planos e Preços -->
+<section id="plans" class="px-10 pb-24 text-center">
+  <h2 class="text-3xl font-bold glow-title mb-6 scroll-reveal">💰 Planos e Preços</h2>
+  <div class="overflow-x-auto scroll-reveal delay-100">
+    <table class="w-full text-left border border-gray-700 rounded-lg text-gray-300 table-plan">
+      <thead class="bg-gray-800">
+        <tr>
+          <th class="px-4 py-2 border-b border-gray-600">Plano</th>
+          <th class="px-4 py-2 border-b border-gray-600">Mensalidade</th>
+          <th class="px-4 py-2 border-b border-gray-600">Anual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-700"><td class="px-4 py-2">Individual – Kit Completo</td><td class="px-4 py-2">R$30,00</td><td class="px-4 py-2">R$328,15</td></tr>
+        <tr class="border-b border-gray-700"><td class="px-4 py-2">Dispositivo Avulso</td><td class="px-4 py-2">R$30,00</td><td class="px-4 py-2">R$328,15</td></tr>
+        <tr class="border-b border-gray-700"><td class="px-4 py-2">Frota 1 veículo</td><td class="px-4 py-2">R$30,00</td><td class="px-4 py-2">-</td></tr>
+        <tr class="border-b border-gray-700"><td class="px-4 py-2">Frota 2 a 10 veículos</td><td class="px-4 py-2">R$20,00 cada</td><td class="px-4 py-2">-</td></tr>
+        <tr class="border-b border-gray-700"><td class="px-4 py-2">Frota 11 a 20 veículos</td><td class="px-4 py-2">R$15,00 cada</td><td class="px-4 py-2">-</td></tr>
+        <tr class="border-b border-gray-700"><td class="px-4 py-2">Frota 21 ou mais veículos</td><td class="px-4 py-2">R$10,00 cada</td><td class="px-4 py-2">-</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="px-10 pb-24">
+  <h2 class="text-3xl font-bold glow-title mb-6 text-center scroll-reveal">❓ FAQ</h2>
+  <div class="space-y-4 max-w-2xl mx-auto scroll-reveal delay-100">
+    <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+      <summary class="cursor-pointer font-semibold glow-title">A Global Rastreamento ainda faz monitoramento 24h?</summary>
+      <p class="mt-2 text-gray-300">Não. Nosso modelo mudou. Agora oferecemos apenas o sistema de rastreamento para que você seja o gestor da sua própria central.</p>
+    </details>
+    <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+      <summary class="cursor-pointer font-semibold glow-title">Preciso contratar uma central de monitoramento?</summary>
+      <p class="mt-2 text-gray-300">Não é obrigatório. O sistema é feito para dar autonomia. Mas, se desejar, pode contratar técnicos ou empresas parceiras.</p>
+    </details>
+    <details class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+      <summary class="cursor-pointer font-semibold glow-title">Posso acompanhar meus veículos pelo celular?</summary>
+      <p class="mt-2 text-gray-300">Sim! Nosso app permite acompanhamento em tempo real pelo celular.</p>
+    </details>
+  </div>
+</section>
+
+<!-- Rodapé com Parceiros -->
+<footer class="text-center py-8 border-t border-gray-700 text-gray-400 scroll-reveal delay-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="parceiros-container mb-6">
+      <h2 class="text-2xl font-bold glow-title mb-4">🤝 Nossos Parceiros</h2>
+      <div class="parceiros-carousel" id="parceirosCarousel" aria-label="Carrossel de parceiros">
+        <div class="parceiros-track" id="parceirosTrack">
+          <img src="uploads/parceiro1.png" alt="Parceiro 1">
+          <img src="uploads/parceiro2.png" alt="Parceiro 2">
+          <img src="uploads/parceiro3.png" alt="Parceiro 3">
+          <img src="uploads/parceiro4.png" alt="Parceiro 4">
+          <img src="uploads/parceiro5.jpg" alt="Parceiro 5">
+          <img src="uploads/parceiro6.jpg" alt="Parceiro 6">
+          <img src="uploads/parceiro7.jpg" alt="Parceiro 7">
+
+          <!-- duplicados para loop suave -->
+          <img src="uploads/parceiro1.png" alt="Parceiro 1">
+          <img src="uploads/parceiro2.png" alt="Parceiro 2">
+          <img src="uploads/parceiro3.png" alt="Parceiro 3">
+          <img src="uploads/parceiro4.png" alt="Parceiro 4">
+          <img src="uploads/parceiro5.jpg" alt="Parceiro 5">
+          <img src="uploads/parceiro6.jpg" alt="Parceiro 6">
+          <img src="uploads/parceiro7.jpg" alt="Parceiro 7">
+        </div>
+      </div>
+      <button class="parceiros-btn left" aria-label="Anterior" id="btnLeft">&#10094;</button>
+      <button class="parceiros-btn right" aria-label="Próximo" id="btnRight">&#10095;</button>
+    </div>
+
+    <div class="text-sm text-gray-500">&copy; 2025 Global Rastreamento. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<!-- Botão WhatsApp -->
+<a href="https://wa.me/5575988190527" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Fale conosco pelo WhatsApp">
+  <div class="bg-green-500 p-4 rounded-full shadow-xl animate-bounce-slow">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white drop-shadow-lg" viewBox="0 0 32 32" fill="currentColor">
+      <path d="M16.003 2.002c-7.733 0-14 6.268-14 14 0 2.481.652 4.901 1.891 7.03L2 30l7.14-1.862A13.938 13.938 0 0 0 16.003 30c7.732 0 14-6.267 14-14s-6.268-14-14-14zm0 2c6.627 0 12 5.373 12 12 0 6.628-5.373 12-12 12a11.93 11.93 0 0 1-6.14-1.682l-.438-.26-4.44 1.158 1.186-4.33-.285-.451a11.96 11.96 0 0 1-1.883-6.435c0-6.627 5.373-12 12-12zm5.885 7.83c-.283-.142-1.668-.82-1.926-.915-.257-.095-.445-.142-.632.143-.188.283-.726.914-.89 1.102-.164.188-.327.212-.61.07-.283-.142-1.194-.44-2.275-1.404-.84-.748-1.406-1.672-1.572-1.955-.164-.283-.017-.436.124-.578.127-.127.283-.33.424-.495.14-.165.188-.283.282-.472.095-.188.048-.354-.024-.496-.07-.142-.631-1.53-.863-2.098-.226-.54-.457-.466-.632-.474l-.54-.01c-.188 0-.495.07-.754.354s-.99.967-.99 2.36c0 1.394 1.014 2.743 1.156 2.93.142.188 1.997 3.056 4.84 4.285.677.292 1.204.465 1.616.596.679.216 1.297.185 1.786.112.545-.08 1.668-.681 1.905-1.338.236-.656.236-1.218.165-1.338-.07-.118-.26-.188-.543-.33z"/>
+    </svg>
+  </div>
+</a>
+
+<script>
+// Menu Mobile Toggle
+const btn = document.getElementById("menu-btn");
+const menu = document.getElementById("mobile-menu");
+const overlay = document.getElementById("overlay");
+if(btn){
+  const bars = btn.querySelectorAll("span");
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("active"); overlay.classList.toggle("active");
+    bars[0].classList.toggle("rotate-45"); bars[0].classList.toggle("translate-y-2");
+    bars[1].classList.toggle("opacity-0");
+    bars[2].classList.toggle("-rotate-45"); bars[2].classList.toggle("-translate-y-2");
+  });
+  overlay.addEventListener("click", () => {
+    menu.classList.remove("active"); overlay.classList.remove("active");
+    bars[0].classList.remove("rotate-45","translate-y-2"); bars[1].classList.remove("opacity-0"); bars[2].classList.remove("-rotate-45","-translate-y-2");
+  });
+}
+
+// Scroll Reveal
+const revealElements = document.querySelectorAll('.scroll-reveal');
+const revealOnScroll = () => {
+  const windowHeight = window.innerHeight;
+  revealElements.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
+    if(elementTop < windowHeight - 100){ el.style.opacity = 1; el.style.animationPlayState='running'; }
+  });
+};
+window.addEventListener('scroll', revealOnScroll); window.addEventListener('load', revealOnScroll);
+
+// Partículas (simples)
+const canvas = document.getElementById('particles'); const ctx = canvas.getContext && canvas.getContext('2d');
+let particlesArray = [];
+function setCanvasSize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+if(ctx){
+  setCanvasSize();
+  class Particle{ constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.size=Math.random()*2+0.6; this.speedX=Math.random()*1-0.5; this.speedY=Math.random()*1-0.5; }
+    update(){ this.x+=this.speedX; this.y+=this.speedY; if(this.x<0||this.x>canvas.width){this.speedX*=-1;} if(this.y<0||this.y>canvas.height){this.speedY*=-1;} }
+    draw(){ ctx.fillStyle='rgba(6,182,212,0.12)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
+  }
+  function initParticles(){ particlesArray=[]; const count = Math.max(40, Math.floor(window.innerWidth/20)); for(let i=0;i<count;i++){particlesArray.push(new Particle());} }
+  function animateParticles(){ ctx.clearRect(0,0,canvas.width,canvas.height); particlesArray.forEach(p=>{ p.update(); p.draw(); }); requestAnimationFrame(animateParticles); }
+  window.addEventListener('resize',()=>{ setCanvasSize(); initParticles(); });
+  initParticles(); animateParticles();
+}
+
+// Parallax Cards (leve)
+const cards = document.querySelectorAll('.card-3d .card-inner');
+const heroTitle = document.querySelector('.hero-bg h2');
+document.addEventListener('mousemove', (e) => {
+  const centerX = window.innerWidth/2; const centerY=window.innerHeight/2;
+  const mouseX=e.clientX-centerX; const mouseY=e.clientY-centerY;
+  cards.forEach(card=>{ card.style.transform=`rotateX(${-mouseY/centerY*4}deg) rotateY(${mouseX/centerX*4}deg)`; });
+  if(heroTitle) heroTitle.style.transform=`translateX(${mouseX*0.02}px) translateY(${mouseY*0.02}px)`;
+});
+
+// CARROSSEL - MARQUEE JS (autoplay + pausa no hover + botões)
+(function(){
+  const carousel = document.getElementById('parceirosCarousel');
+  const track = document.getElementById('parceirosTrack');
+  const btnLeft = document.getElementById('btnLeft');
+  const btnRight = document.getElementById('btnRight');
+  if(!carousel || !track) return;
+
+  // For seamless loop we rely on duplicated items already present in HTML.
+  // Autoplay using requestAnimationFrame so manual scrolling works fine.
+  let speed = 0.6; // px per frame approx
+  let rafId = null;
+  let isPaused = false;
+
+  function step(){
+    if(!isPaused){
+      carousel.scrollLeft += speed;
+      // when we've scrolled half of track (duplicated length) jump back
+      if(carousel.scrollLeft >= track.scrollWidth / 2){
+        carousel.scrollLeft -= track.scrollWidth / 2;
+      }
+    }
+    rafId = requestAnimationFrame(step);
+  }
+
+  // Start animation
+  rafId = requestAnimationFrame(step);
+
+  // Pause on hover/focus
+  carousel.addEventListener('mouseenter', ()=>{ isPaused = true; });
+  carousel.addEventListener('mouseleave', ()=>{ isPaused = false; });
+
+  // Buttons
+  window.scrollParceiros = function(value){
+    // pause briefly while user interacts
+    isPaused = true;
+    carousel.scrollBy({ left: value, behavior: 'smooth' });
+    // resume after short delay
+    setTimeout(()=>{ isPaused = false; }, 700);
+  };
+  btnLeft.addEventListener('click', ()=>{ window.scrollParceiros(-300); });
+  btnRight.addEventListener('click', ()=>{ window.scrollParceiros(300); });
+
+  // Make sure when page loads we start roughly at beginning of track
+  window.addEventListener('load', ()=>{
+    if(carousel.scrollLeft === 0) carousel.scrollLeft = 0;
+  });
+})();
+
+</script>
+
+</body>
+</html>
