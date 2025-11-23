@@ -8,7 +8,7 @@
   <link
     rel="icon"
     type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23ffe0bf'/%3E%3Cstop offset='50%25' stop-color='%23ff6a00'/%3E%3Cstop offset='100%25' stop-color='%232c1405'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='32' fill='url(%23g)'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-size='28' font-family='Poppins,Arial,Helvetica,sans-serif' fill='%231b0900' font-weight='700'%3EG%3C/text%3E%3C/svg%3E"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23e0f2ff'/%3E%3Cstop offset='50%25' stop-color='%230a74da'/%3E%3Cstop offset='100%25' stop-color='%2326537a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='32' fill='url(%23g)'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-size='28' font-family='Poppins,Arial,Helvetica,sans-serif' fill='%23ffffff' font-weight='700'%3EG%3C/text%3E%3C/svg%3E"
   />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,17 +17,29 @@
 
   <style>
     :root {
-      --bg: #050509;
-      --bg-alt: #0d0d14;
-      --card: #14141f;
-      --accent: #ff6a00;
-      --accent-soft: #ffb366;
-      --text: #f5f5f5;
-      --muted: #a9a9b8;
-      --border: rgba(255,255,255,0.08);
-      --radius-lg: 20px;
-      --radius-xl: 26px;
-      --shadow-3d: 0 18px 40px rgba(0,0,0,0.8);
+      /* Tema claro padrão */
+      --bg: #f5f7fb;
+      --bg-alt: #ffffff;
+      --card: #ffffff;
+      --accent: #0a74da;       /* azul principal */
+      --accent-soft: #ff6a00;  /* laranja só para destaques/CTAs */
+      --text: #111827;         /* cinza bem escuro para texto */
+      --muted: #6b7280;        /* cinza médio para textos secundários */
+      --border: rgba(15, 23, 42, 0.10);
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Tema escuro (ativado via data-theme="dark" no <html>) */
+    html[data-theme="dark"] {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: #f97316;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: rgba(148, 163, 184, 0.35);
+      --shadow-soft: 0 22px 40px rgba(0, 0, 0, 0.7);
     }
 
     * {
@@ -38,7 +50,7 @@
 
     body {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1d1d2b 0, #050509 55%);
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       scroll-behavior: smooth;
@@ -54,7 +66,6 @@
       display: block;
     }
 
-    /* Layout base */
     .container {
       width: 100%;
       max-width: 1200px;
@@ -62,13 +73,15 @@
       padding: 0 1.5rem;
     }
 
+    /* HEADER / NAV */
     header {
       position: sticky;
       top: 0;
       z-index: 999;
       backdrop-filter: blur(14px);
-      background: linear-gradient(to bottom, rgba(5,5,9,0.95), rgba(5,5,9,0.85), transparent);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      background: color-mix(in srgb, var(--bg-alt) 92%, transparent);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
     }
 
     .nav {
@@ -76,6 +89,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0.8rem 0;
+      gap: 1rem;
     }
 
     .logo {
@@ -88,10 +102,8 @@
       width: 40px;
       height: 40px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #ffe0bf, #ff6a00 40%, #2c1405 75%);
-      box-shadow:
-        0 0 18px rgba(255,106,0,0.8),
-        0 16px 30px rgba(0,0,0,0.9);
+      background: radial-gradient(circle at 30% 20%, #e0f2ff, var(--accent) 50%, #1e293b 85%);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -101,8 +113,8 @@
     .logo-orb span {
       font-size: 1.2rem;
       font-weight: 700;
-      color: #1b0900;
-      text-shadow: 0 0 6px rgba(255,255,255,0.8);
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(15, 23, 42, 0.9);
     }
 
     .logo-text-main {
@@ -110,6 +122,7 @@
       font-size: 1.2rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      color: var(--text);
     }
 
     .logo-text-sub {
@@ -130,6 +143,7 @@
       color: var(--muted);
       position: relative;
       padding-bottom: 0.2rem;
+      transition: color 0.2s ease;
     }
 
     .nav-links a::after {
@@ -143,40 +157,67 @@
       transition: width 0.2s ease;
     }
 
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
     .nav-links a:hover::after {
       width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .nav-cta {
       padding: 0.55rem 1rem;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), #ffa600);
-      color: #1b0900;
+      background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 70%, white));
+      color: #ffffff;
       font-weight: 600;
       font-size: 0.85rem;
-      box-shadow: 0 10px 25px rgba(255,106,0,0.55);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
       border: none;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
+      white-space: nowrap;
     }
 
     .nav-cta span {
       font-size: 1.15rem;
     }
 
-    /* Mobile nav toggle */
+    .theme-toggle {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.6rem;
+      background: color-mix(in srgb, var(--bg-alt) 90%, var(--accent) 10%);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .theme-toggle span {
+      font-size: 1.1rem;
+    }
+
     .nav-toggle {
       display: none;
       border: none;
       background: transparent;
       color: var(--text);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       cursor: pointer;
     }
 
-    /* Hero */
+    /* HERO */
     .hero {
       padding: 3.5rem 0 3rem;
     }
@@ -194,10 +235,10 @@
       gap: 0.4rem;
       padding: 0.2rem 0.7rem;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.07);
-      background: radial-gradient(circle at 0 0, rgba(255,106,0,0.24), rgba(10,10,15,0.9));
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      background: color-mix(in srgb, var(--bg-alt) 85%, var(--accent) 15%);
       font-size: 0.7rem;
-      color: var(--accent-soft);
+      color: color-mix(in srgb, var(--accent) 70%, black);
       margin-bottom: 0.8rem;
     }
 
@@ -205,18 +246,19 @@
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: var(--accent-soft);
-      box-shadow: 0 0 10px rgba(255,179,102,0.9);
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
     }
 
     .hero-title {
       font-size: clamp(2rem, 4vw, 2.8rem);
       line-height: 1.1;
       margin-bottom: 0.6rem;
+      color: var(--text);
     }
 
     .hero-title span {
-      background: linear-gradient(120deg, #ffb366, #ff6a00);
+      background: linear-gradient(120deg, var(--accent), color-mix(in srgb, var(--accent) 60%, white));
       -webkit-background-clip: text;
       color: transparent;
     }
@@ -237,27 +279,27 @@
 
     .pill {
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
       padding: 0.22rem 0.8rem;
       font-size: 0.7rem;
       color: var(--muted);
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
-      background: rgba(10,10,16,0.8);
+      background: color-mix(in srgb, var(--bg-alt) 90%, white 10%);
     }
 
     .pill-icon {
       width: 18px;
       height: 18px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #fff4e3, #ff6a00 55%, #2a1204 90%);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.9);
+      background: radial-gradient(circle at 30% 20%, #ffffff, var(--accent) 60%, #0b1120 90%);
+      box-shadow: 0 6px 12px rgba(15, 23, 42, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.8rem;
-      color: #1b0900;
+      color: #ffffff;
     }
 
     .hero-actions {
@@ -278,22 +320,22 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: linear-gradient(135deg, var(--accent), #ffb366);
-      color: #1b0900;
-      box-shadow: 0 16px 40px rgba(255,106,0,0.5);
+      background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, white));
+      color: #ffffff;
+      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.45);
     }
 
     .btn-secondary {
       padding: 0.8rem 1.3rem;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.15);
+      border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
       cursor: pointer;
       font-weight: 500;
       font-size: 0.9rem;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: radial-gradient(circle at 0 0, rgba(255,255,255,0.04), rgba(10,10,16,0.9));
+      background: color-mix(in srgb, var(--bg-alt) 90%, white 10%);
       color: var(--text);
     }
 
@@ -303,51 +345,46 @@
     }
 
     .hero-meta strong {
-      color: var(--accent-soft);
+      color: var(--text);
       font-weight: 600;
     }
 
-    /* Hero – vídeo */
+    /* HERO – VÍDEO */
     .hero-video-card {
-      background: radial-gradient(circle at 0 0, rgba(255,106,0,0.2), #050509);
+      background: var(--card);
       border-radius: var(--radius-xl);
       padding: 1.1rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow-3d);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
       position: relative;
       overflow: hidden;
     }
 
-    .hero-video-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 120% -10%, rgba(255,255,255,0.04), transparent 60%);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
     .video-badge {
       font-size: 0.7rem;
-      color: var(--accent-soft);
+      color: color-mix(in srgb, var(--accent) 80%, black);
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
       margin-bottom: 0.4rem;
+      background: color-mix(in srgb, var(--bg-alt) 80%, var(--accent) 20%);
+      padding: 0.15rem 0.65rem;
+      border-radius: 999px;
     }
 
     .video-title {
       font-size: 0.9rem;
       font-weight: 500;
       margin-bottom: 0.8rem;
+      color: var(--text);
     }
 
     .video-frame-wrapper {
       position: relative;
       border-radius: 18px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.9);
+      border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.15);
       aspect-ratio: 16/9;
       background: #000;
     }
@@ -356,7 +393,7 @@
       position: absolute;
       inset: -2px;
       padding: 2px;
-      background: linear-gradient(135deg, rgba(255,106,0,0.8), rgba(255,182,111,0.3), rgba(10,10,16,0));
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 90%, white), color-mix(in srgb, var(--accent) 40%, var(--accent-soft) 60%), transparent);
       z-index: 0;
     }
 
@@ -377,7 +414,7 @@
       display: block;
     }
 
-    /* Seções */
+    /* SEÇÕES GERAIS */
     section {
       padding: 2.5rem 0 1.8rem;
     }
@@ -393,12 +430,13 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       font-size: 0.65rem;
-      color: var(--accent-soft);
+      color: color-mix(in srgb, var(--accent) 80%, white);
     }
 
     .section-title {
       font-size: 1.4rem;
       font-weight: 600;
+      color: var(--text);
     }
 
     .section-subtitle {
@@ -407,27 +445,19 @@
     }
 
     .card {
-      background: radial-gradient(circle at top, #181826, #0c0c14 60%);
-      border-radius: var(--radius-lg);
+      background: var(--card);
+      border-radius: 20px;
       border: 1px solid var(--border);
       padding: 1.4rem 1.5rem;
-      box-shadow: var(--shadow-3d);
+      box-shadow: var(--shadow-soft);
       position: relative;
       overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 0 0, rgba(255,106,0,0.16), transparent 55%);
-      opacity: 0.8;
-      pointer-events: none;
     }
 
     .card h3 {
       font-size: 1.05rem;
       margin-bottom: 0.6rem;
+      color: var(--text);
     }
 
     .card p {
@@ -449,7 +479,7 @@
       font-size: 1rem;
     }
 
-    /* Grade de cards com “ícones 3D” */
+    /* GRID DE ÍCONES */
     .icon-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -457,11 +487,11 @@
     }
 
     .icon-card {
-      background: radial-gradient(circle at 30% 10%, rgba(255,255,255,0.05), #09090f);
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--card);
+      border-radius: 18px;
+      border: 1px solid var(--border);
       padding: 1.1rem 1rem;
-      box-shadow: var(--shadow-3d);
+      box-shadow: var(--shadow-soft);
       position: relative;
       overflow: hidden;
     }
@@ -470,26 +500,26 @@
       width: 44px;
       height: 44px;
       border-radius: 18px;
-      background: linear-gradient(145deg, #ffddbf, #ff6a00, #a63c00);
-      box-shadow:
-        0 18px 30px rgba(0,0,0,0.9),
-        inset 0 0 10px rgba(255,255,255,0.45);
+      background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 20%, white), var(--accent), #0b1120);
+      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
       transform: translateY(0);
       transform-style: preserve-3d;
       margin-bottom: 0.6rem;
+      color: #ffffff;
     }
 
     .icon-3d span {
       font-size: 1.3rem;
-      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+      text-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
     }
 
     .icon-card h4 {
       font-size: 0.95rem;
       margin-bottom: 0.35rem;
+      color: var(--text);
     }
 
     .icon-card p {
@@ -497,7 +527,7 @@
       color: var(--muted);
     }
 
-    /* Listas */
+    /* LISTAS */
     ul {
       list-style: none;
       padding-left: 0;
@@ -535,7 +565,7 @@
       color: var(--accent-soft);
     }
 
-    /* Planos */
+    /* PLANOS */
     .plan-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -543,11 +573,11 @@
     }
 
     .plan-card {
-      background: radial-gradient(circle at 0 0, rgba(255,106,0,0.15), #090910);
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--card);
+      border-radius: 18px;
+      border: 1px solid var(--border);
       padding: 1.2rem 1.1rem 1.3rem;
-      box-shadow: var(--shadow-3d);
+      box-shadow: var(--shadow-soft);
       position: relative;
       overflow: hidden;
     }
@@ -556,7 +586,7 @@
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      color: var(--accent-soft);
+      color: color-mix(in srgb, var(--accent) 80%, white);
       margin-bottom: 0.2rem;
     }
 
@@ -564,6 +594,7 @@
       font-size: 1rem;
       font-weight: 600;
       margin-bottom: 0.15rem;
+      color: var(--text);
     }
 
     .plan-price {
@@ -606,14 +637,14 @@
       font-size: 0.65rem;
       padding: 0.1rem 0.5rem;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid color-mix(in srgb, var(--border) 90%, white 10%);
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: var(--accent-soft);
-      background: rgba(0,0,0,0.7);
+      color: color-mix(in srgb, var(--accent) 90%, white);
+      background: color-mix(in srgb, var(--bg-alt) 70%, var(--accent) 30%);
     }
 
-    /* Contato / rodapé */
+    /* CONTATO / RODAPÉ */
     .contact-card {
       display: grid;
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
@@ -632,27 +663,112 @@
 
     .contact-highlight {
       font-weight: 500;
-      color: var(--accent-soft);
+      color: var(--text);
     }
 
     .contact-box {
-      background: radial-gradient(circle at 0 0, rgba(255,106,0,0.18), #090910);
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--card);
+      border-radius: 18px;
+      border: 1px solid var(--border);
       padding: 1rem 1.1rem;
       font-size: 0.8rem;
       color: var(--muted);
+      box-shadow: var(--shadow-soft);
     }
 
     footer {
       padding: 1.3rem 0 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid var(--border);
       font-size: 0.75rem;
       color: var(--muted);
       text-align: center;
+      background: color-mix(in srgb, var(--bg-alt) 95%, transparent);
+      margin-top: 1.5rem;
     }
 
-    /* Botão flutuante WhatsApp */
+    /* GOOGLE REVIEWS SECTION */
+    .reviews-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .reviews-summary {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .reviews-score {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: baseline;
+      gap: 0.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .reviews-stars {
+      color: #facc15;
+      margin-bottom: 0.4rem;
+      font-size: 1.1rem;
+    }
+
+    .reviews-count {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .reviews-list {
+      background: var(--card);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 1rem;
+      max-height: 320px;
+      overflow-y: auto;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .review-item {
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+      padding-bottom: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .review-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .review-author {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .review-rating {
+      font-size: 0.85rem;
+      color: #facc15;
+      margin: 0.1rem 0;
+    }
+
+    .review-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .review-date {
+      font-size: 0.75rem;
+      color: color-mix(in srgb, var(--muted) 80%, transparent);
+      margin-top: 0.15rem;
+    }
+
+    /* WHATSAPP FLOAT */
     .whatsapp-float {
       position: fixed;
       right: 18px;
@@ -668,10 +784,8 @@
       width: 54px;
       height: 54px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #ffffff, #29a71a 45%, #045e00 80%);
-      box-shadow:
-        0 0 14px rgba(0,0,0,0.85),
-        0 0 18px rgba(0,255,0,0.6);
+      background: radial-gradient(circle at 30% 20%, #ffffff, #22c55e 45%, #15803d 80%);
+      box-shadow: 0 0 14px rgba(15, 23, 42, 0.35), 0 0 18px rgba(34, 197, 94, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -681,39 +795,46 @@
     }
 
     .whatsapp-float-label {
-      background: rgba(10,10,16,0.9);
+      background: rgba(15, 23, 42, 0.9);
       padding: 0.5rem 0.8rem;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(148, 163, 184, 0.8);
       font-size: 0.75rem;
-      color: var(--muted);
+      color: #e5e7eb;
       backdrop-filter: blur(12px);
     }
 
-    /* Responsivo geral */
+    /* RESPONSIVO */
     @media (max-width: 900px) {
       .hero-grid {
         grid-template-columns: minmax(0, 1fr);
       }
+
       .hero {
         padding-top: 2.3rem;
       }
+
       .plan-grid {
         grid-template-columns: minmax(0, 1fr);
       }
+
       .icon-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      .contact-card {
+
+      .contact-card,
+      .reviews-wrapper {
         grid-template-columns: minmax(0, 1fr);
       }
+
       header {
-        background: rgba(5,5,9,0.98);
+        background: color-mix(in srgb, var(--bg-alt) 96%, transparent);
       }
+
       .nav-links {
         position: fixed;
         inset: 52px 0 auto;
-        background: rgba(5,5,9,0.98);
+        background: color-mix(in srgb, var(--bg-alt) 98%, var(--bg) 2%);
         padding: 0.9rem 1.5rem 1rem;
         flex-direction: column;
         align-items: flex-start;
@@ -722,14 +843,21 @@
         pointer-events: none;
         transition: all 0.2s ease;
       }
+
       .nav-links.open {
         transform: translateY(0);
         opacity: 1;
         pointer-events: auto;
       }
+
       .nav-toggle {
         display: block;
       }
+
+      .nav-actions {
+        gap: 0.3rem;
+      }
+
       .nav-cta {
         display: none;
       }
@@ -739,12 +867,16 @@
       .icon-grid {
         grid-template-columns: minmax(0, 1fr);
       }
+
       .whatsapp-float-label {
         display: none;
       }
+
+      .reviews-list {
+        max-height: 260px;
+      }
     }
 
-    /* Ajustes extras para celular bem pequeno */
     @media (max-width: 480px) {
       .container {
         padding: 0 1rem;
@@ -816,9 +948,14 @@
         <a href="#contato">Contato</a>
       </nav>
 
-      <button class="nav-cta" onclick="scrollToSection('contato')">
-        <span>●</span> Fale com a gente
-      </button>
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Alternar tema">
+          <span id="themeIcon">🌙</span>
+        </button>
+        <button class="nav-cta" onclick="scrollToSection('contato')">
+          <span>●</span> Fale com a gente
+        </button>
+      </div>
     </div>
   </header>
 
@@ -1038,7 +1175,7 @@
 
             <div>
               <div class="contact-box">
-                <strong style="display:block;margin-bottom:0.3rem;color:var(--accent-soft);">
+                <strong style="display:block;margin-bottom:0.3rem;color:var(--text);">
                   Importante:
                 </strong>
                 <ul class="list-check">
@@ -1210,6 +1347,8 @@
       </div>
     </section>
 
+    
+
     <!-- Conclusão / Contato -->
     <section id="contato">
       <div class="container">
@@ -1279,7 +1418,9 @@
     </div>
   </a>
 
+  <!-- Scripts -->
   <script>
+    // Scroll suave
     function scrollToSection(id) {
       const el = document.getElementById(id);
       if (el) {
@@ -1287,6 +1428,7 @@
       }
     }
 
+    // WhatsApp
     function openWhatsApp() {
       window.open(
         "https://wa.me/5575988190527?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20plataforma%20de%20gest%C3%A3o%20veicular%20da%20Global%20Tecnologia.",
@@ -1294,12 +1436,134 @@
       );
     }
 
+    // Menu mobile
     function toggleNav() {
       const nav = document.getElementById("navLinks");
       nav.classList.toggle("open");
     }
 
+    // Ano no rodapé
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // TEMA (Light/Dark) com preferência do sistema + botão manual
+    const THEME_KEY = "global-tecnologia-theme";
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      const icon = document.getElementById("themeIcon");
+      if (icon) {
+        icon.textContent = theme === "dark" ? "☀️" : "🌙";
+      }
+    }
+
+    (function initTheme() {
+      const stored = localStorage.getItem(THEME_KEY);
+      const systemPrefDark = window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      const theme = stored || (systemPrefDark ? "dark" : "light");
+      applyTheme(theme);
+
+      // Se o usuário não escolheu manualmente, acompanha mudança do sistema
+      if (!stored && window.matchMedia) {
+        window.matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", (e) => {
+            applyTheme(e.matches ? "dark" : "light");
+          });
+      }
+    })();
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme") || "light";
+      const next = current === "light" ? "dark" : "light";
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next);
+    }
+
+    // GOOGLE REVIEWS (Places API – precisa de API KEY e PLACE ID)
+    const GOOGLE_API_KEY = "SUA_API_KEY_AQUI";      // 👉 Substitua pela sua API Key
+    const GOOGLE_PLACE_ID = "SEU_PLACE_ID_AQUI";    // 👉 Substitua pelo Place ID da Global Tecnologia
+
+    function initGoogleReviews() {
+      try {
+        if (!GOOGLE_API_KEY || GOOGLE_API_KEY === "SUA_API_KEY_AQUI") {
+          console.warn("Configure sua API KEY do Google.");
+          document.getElementById("googleReviews").innerHTML =
+            "<div class='review-item'><div class='review-text'>Configure a API Key e o Place ID para carregar as avaliações.</div></div>";
+          document.getElementById("reviewsCount").textContent =
+            "Configuração pendente da API do Google.";
+          return;
+        }
+
+        const service = new google.maps.places.PlacesService(document.createElement("div"));
+        service.getDetails(
+          {
+            placeId: GOOGLE_PLACE_ID,
+            fields: ["rating", "user_ratings_total", "reviews"]
+          },
+          (place, status) => {
+            if (status !== google.maps.places.PlacesServiceStatus.OK || !place) {
+              console.warn("Erro ao buscar avaliações Google:", status);
+              document.getElementById("googleReviews").innerHTML =
+                "<div class='review-item'><div class='review-text'>Não foi possível carregar as avaliações no momento.</div></div>";
+              document.getElementById("reviewsCount").textContent =
+                "Tente novamente mais tarde.";
+              return;
+            }
+
+            const avg = place.rating || 0;
+            const total = place.user_ratings_total || 0;
+            const reviews = (place.reviews || []).slice(0, 6); // limite de 6 reviews
+
+            document.getElementById("reviewsAverage").textContent = avg.toFixed(1);
+            document.getElementById("reviewsCount").textContent =
+              total > 0
+                ? `${total} avaliação(ões) publicadas no Google.`
+                : "Seja o primeiro a avaliar a Global Tecnologia no Google.";
+
+            const starsFull = "★★★★★";
+            const reviewsContainer = document.getElementById("googleReviews");
+            document.getElementById("reviewsStars").textContent = starsFull;
+
+            if (!reviews.length) {
+              reviewsContainer.innerHTML =
+                "<div class='review-item'><div class='review-text'>Ainda não há avaliações suficientes para exibição detalhada.</div></div>";
+              return;
+            }
+
+            reviewsContainer.innerHTML = "";
+            reviews.forEach((r) => {
+              const item = document.createElement("div");
+              item.className = "review-item";
+
+              const ratingStars = "★★★★★".slice(0, Math.round(r.rating || 0));
+              const date = r.relative_time_description || "";
+
+              item.innerHTML = `
+                <div class="review-author">
+                  <span>${r.author_name || "Cliente Google"}</span>
+                </div>
+                <div class="review-rating">${ratingStars}</div>
+                <div class="review-text">${r.text || ""}</div>
+                <div class="review-date">${date}</div>
+              `;
+              reviewsContainer.appendChild(item);
+            });
+          }
+        );
+      } catch (e) {
+        console.error("Erro ao inicializar reviews:", e);
+      }
+    }
+  </script>
+
+  <!-- Script da API JS do Google Maps / Places
+       ⚠️ Substitua SUA_API_KEY_AQUI pela sua chave real.
+       Você também deve garantir que a Places API esteja ativa no Google Cloud. -->
+  <script
+    async
+    defer
+    src="https://maps.googleapis.com/maps/api/js?key=SUA_API_KEY_AQUI&libraries=places&callback=initGoogleReviews">
   </script>
 </body>
 </html>
