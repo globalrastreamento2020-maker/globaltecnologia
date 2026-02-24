@@ -128,8 +128,18 @@ footer a {color:#ffc107;text-decoration:none;margin:0 10px;}
   id="Halk"
   src="https://webchat.halk.io/api/widget?chatbotID=cmk1sti4a00iw5bi09c7jiqes&ref=widget">
 </script>
-
+<style>
+/* Aumenta tamanho do botão da Halk no celular */
+@media (max-width: 768px) {
+  iframe[id*="Halk"],
+  div[id*="Halk"] iframe {
+    transform: scale(1.3) !important;
+    transform-origin: bottom right !important;
+  }
+}
+</style>
 </body>
 
 </html>
+
 
