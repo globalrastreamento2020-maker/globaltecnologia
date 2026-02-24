@@ -124,52 +124,12 @@ footer a {color:#ffc107;text-decoration:none;margin:0 10px;}
 </footer>
 
 <!-- CHAT HALK ESTRATÉGICO -->
-<script>
-window.addEventListener("load", function () {
-
-  // Detecta se está rodando no GitHub Pages
-  const isGitHub = window.location.hostname.includes("github.io");
-
-  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-
-  if (!isMobile) return;
-
-  if (sessionStorage.getItem("chatOpened")) return;
-
-  let chatLoaded = false;
-
-  function loadChat() {
-    if (chatLoaded) return;
-    chatLoaded = true;
-
-    var script = document.createElement("script");
-    script.id = "Halk";
-    script.src = "https://webchat.halk.io/api/widget?chatbotID=cmk1sti4a00iw5bi09c7jiqes&ref=widget";
-    script.async = true;
-    document.body.appendChild(script);
-
-    setTimeout(function () {
-      if (window.Halk) {
-        window.Halk("open");
-        sessionStorage.setItem("chatOpened", "true");
-      }
-    }, 1500);
-  }
-
-  // Abre após 8 segundos
-  setTimeout(loadChat, 8000);
-
-  // Ou abre se rolar 40%
-  window.addEventListener("scroll", function () {
-    const scrollPercent = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
-    if (scrollPercent > 0.4) {
-      loadChat();
-    }
-  });
-
-});
+<script
+  id="Halk"
+  src="https://webchat.halk.io/api/widget?chatbotID=cmk1sti4a00iw5bi09c7jiqes&ref=widget">
 </script>
 
 </body>
 
 </html>
+
