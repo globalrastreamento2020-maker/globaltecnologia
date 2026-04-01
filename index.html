@@ -1,191 +1,464 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Global Rastreamento em Paulo Afonso - Tecnologia em Gestão Veicular</title>
-
-<meta name="description" content="Rastreamento veicular em Paulo Afonso - BA. Plataforma moderna de gestão veicular com chip incluso, aplicativo e suporte local.">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-* {margin:0;padding:0;box-sizing:border-box;}
-body {font-family:'Poppins',sans-serif;background:#0b1d3a;color:#fff;line-height:1.6;}
-.container {width:90%;max-width:1200px;margin:auto;}
-nav {background:#06142a;padding:15px 0;position:fixed;width:100%;top:0;z-index:1000;}
-nav .container {display:flex;justify-content:space-between;align-items:center;}
-nav a {color:#ffc107;text-decoration:none;margin-left:20px;font-weight:600;}
-header {padding:150px 0 100px;text-align:center;background:linear-gradient(135deg,#0b1d3a,#123a8c);}
-header h1 {font-size:46px;}
-header p {margin:20px 0;color:#cbd6ff;}
-.btn {display:inline-block;padding:14px 30px;margin:10px;border-radius:50px;text-decoration:none;font-weight:600;transition:0.3s;}
-.btn-primary {background:#ffc107;color:#000;}
-.btn-outline {border:2px solid #ffc107;color:#ffc107;}
-.btn-outline:hover {background:#ffc107;color:#000;}
-section {padding:80px 0;}
-section h2 {text-align:center;margin-bottom:40px;font-size:34px;}
-.cards {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
-.card {background:#132a52;padding:30px;border-radius:15px;}
-.blog-article {background:#132a52;padding:30px;border-radius:15px;margin-bottom:30px;}
-footer {background:#06142a;text-align:center;padding:40px;}
-footer a {color:#ffc107;text-decoration:none;margin:0 10px;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Rastreamento | Controle Total do Seu Veículo na Palma da Mão</title>
+  <meta name="description" content="A Global Rastreamento entrega a solução completa para você acompanhar seu veículo ou frota pelo aplicativo. Rastreador, chip, plataforma e app — tudo pronto para você ter controle direto." />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
 </head>
-
 <body>
 
-<nav>
-<div class="container">
-<div><strong>Global Rastreamento</strong></div>
-<div>
-<a href="#inicio">Início</a>
-<a href="#como">Como Funciona</a>
-<a href="#investimento">Investimento</a>
-<a href="#blog">Blog</a>
-<a href="https://wa.me/5575988515825">WhatsApp</a>
-</div>
-</div>
-</nav>
+  <!-- ===================== HEADER / NAV ===================== -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="#" class="logo">
+          <span class="logo-icon"><i class="fas fa-map-marker-alt"></i></span>
+          <span class="logo-text">Global<span class="logo-accent">Rastreamento</span></span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#como-funciona">Como Funciona</a></li>
+          <li><a href="#o-que-inclui">O Que Inclui</a></li>
+          <li><a href="#para-quem">Para Quem</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#contato" class="btn-nav">Falar com a Equipe</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
-<header id="inicio">
-<div class="container">
-<h1>Tecnologia em Gestão Veicular</h1>
-<p>Rastreamento veicular em Paulo Afonso - BA com controle total pelo aplicativo.</p>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-bolt"></i> Solução completa em rastreamento
+        </div>
+        <h1 class="hero-title">
+          Controle total do seu<br />
+          <span class="highlight">veículo ou frota</span><br />
+          na palma da mão.
+        </h1>
+        <p class="hero-desc">
+          A Global Rastreamento entrega tudo pronto: rastreador, chip, plataforma e aplicativo
+          — para você acompanhar em tempo real, com autonomia e sem depender de central.
+        </p>
+        <div class="hero-cta">
+          <a href="#contato" class="btn btn-primary">
+            <i class="fas fa-whatsapp"></i> Falar com a Equipe
+          </a>
+          <a href="#como-funciona" class="btn btn-outline">
+            Como funciona <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Rastreador incluso</span>
+          </div>
+          <div class="trust-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Chip M2M incluso</span>
+          </div>
+          <div class="trust-item">
+            <i class="fas fa-check-circle"></i>
+            <span>App disponível 24h</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="app-header">
+              <div class="app-logo-sm"><i class="fas fa-map-marker-alt"></i></div>
+              <span>Global Rastreamento</span>
+              <div class="app-status-dot"></div>
+            </div>
+            <div class="map-placeholder">
+              <div class="map-grid"></div>
+              <div class="map-pin pulse-pin">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="map-card">
+                <div class="map-card-label">Localização atual</div>
+                <div class="map-card-value"><i class="fas fa-circle dot-green"></i> Veículo online</div>
+              </div>
+            </div>
+            <div class="app-stats">
+              <div class="stat-box">
+                <i class="fas fa-tachometer-alt"></i>
+                <span class="stat-val">62 km/h</span>
+                <span class="stat-label">Velocidade</span>
+              </div>
+              <div class="stat-box">
+                <i class="fas fa-route"></i>
+                <span class="stat-val">14.3 km</span>
+                <span class="stat-label">Percurso</span>
+              </div>
+              <div class="stat-box">
+                <i class="fas fa-clock"></i>
+                <span class="stat-val">00:23</span>
+                <span class="stat-label">Em rota</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-float-card card-1">
+          <i class="fas fa-shield-alt"></i>
+          <span>Você no controle</span>
+        </div>
+        <div class="hero-float-card card-2">
+          <i class="fas fa-mobile-alt"></i>
+          <span>App em tempo real</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f8fafc"/></svg>
+    </div>
+  </section>
 
-<a href="https://wa.me/5575988515825" class="btn btn-primary">Falar no WhatsApp</a>
-<a href="https://globalrastreamento.net.br/" class="btn btn-outline">Acessar Plataforma</a>
-</div>
-</header>
+  <!-- ===================== COMO FUNCIONA ===================== -->
+  <section class="section como-funciona" id="como-funciona">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Simples e direto</div>
+        <h2 class="section-title">Como funciona na prática</h2>
+        <p class="section-sub">Em poucos passos, você tem controle total do seu veículo ou frota pelo celular.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card" data-animate>
+          <div class="step-number">01</div>
+          <div class="step-icon"><i class="fas fa-box-open"></i></div>
+          <h3>Você recebe o kit completo</h3>
+          <p>Rastreador, chip M2M com dados e acesso à plataforma — tudo configurado e pronto para instalar.</p>
+        </div>
+        <div class="step-divider"><i class="fas fa-chevron-right"></i></div>
+        <div class="step-card" data-animate>
+          <div class="step-number">02</div>
+          <div class="step-icon"><i class="fas fa-car"></i></div>
+          <h3>Rastreador é instalado</h3>
+          <p>O equipamento é instalado no veículo e começa a enviar a localização em tempo real automaticamente.</p>
+        </div>
+        <div class="step-divider"><i class="fas fa-chevron-right"></i></div>
+        <div class="step-card" data-animate>
+          <div class="step-number">03</div>
+          <div class="step-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Você acompanha pelo app</h3>
+          <p>No seu celular, você visualiza a localização, histórico de rotas e dados do veículo a qualquer momento.</p>
+        </div>
+        <div class="step-divider"><i class="fas fa-chevron-right"></i></div>
+        <div class="step-card" data-animate>
+          <div class="step-number">04</div>
+          <div class="step-icon"><i class="fas fa-sliders-h"></i></div>
+          <h3>Gestão direta e autônoma</h3>
+          <p>Tudo na palma da mão. Sem precisar ligar para central. Sem esperar. Controle total é seu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="como">
-<div class="container">
-<h2>Como Funciona</h2>
-<div class="cards">
-<div class="card"><h3>Aquisição</h3><p>Adquira o equipamento compatível.</p></div>
-<div class="card"><h3>Instalação</h3><p>Técnico parceiro especializado.</p></div>
-<div class="card"><h3>Ativação</h3><p>Chip ativado e sistema liberado.</p></div>
-<div class="card"><h3>Gestão Total</h3><p>Controle em tempo real pelo app.</p></div>
-</div>
-</div>
-</section>
+  <!-- ===================== O QUE INCLUI ===================== -->
+  <section class="section o-que-inclui" id="o-que-inclui">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Tudo pronto para usar</div>
+        <h2 class="section-title">O que você recebe com a Global</h2>
+        <p class="section-sub">Uma solução completa, sem precisar correr atrás de nada separado.</p>
+      </div>
+      <div class="includes-grid">
+        <div class="include-card" data-animate>
+          <div class="include-icon" style="--color: #3b82f6;">
+            <i class="fas fa-microchip"></i>
+          </div>
+          <h3>Rastreador Veicular</h3>
+          <p>Equipamento de alta precisão com tecnologia GPS para localização em tempo real do seu veículo.</p>
+        </div>
+        <div class="include-card" data-animate>
+          <div class="include-icon" style="--color: #10b981;">
+            <i class="fas fa-sim-card"></i>
+          </div>
+          <h3>Chip M2M com Dados</h3>
+          <p>Chip de comunicação Machine-to-Machine incluso, com conectividade para transmissão contínua de dados.</p>
+        </div>
+        <div class="include-card" data-animate>
+          <div class="include-icon" style="--color: #8b5cf6;">
+            <i class="fas fa-desktop"></i>
+          </div>
+          <h3>Plataforma de Rastreamento</h3>
+          <p>Acesso à plataforma web completa para visualizar localização, histórico de rotas e relatórios.</p>
+        </div>
+        <div class="include-card" data-animate>
+          <div class="include-icon" style="--color: #f59e0b;">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Aplicativo para Celular</h3>
+          <p>App intuitivo para acompanhar seu veículo ou frota de qualquer lugar, a qualquer hora, pelo smartphone.</p>
+        </div>
+        <div class="include-card" data-animate>
+          <div class="include-icon" style="--color: #ef4444;">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>Suporte para Ativação</h3>
+          <p>Nossa equipe acompanha todo o processo de ativação e configuração para garantir que tudo funcione desde o início.</p>
+        </div>
+        <div class="include-card include-highlight" data-animate>
+          <div class="include-icon" style="--color: #ffffff;">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3>Tudo em um só lugar</h3>
+          <p>Você não precisa buscar equipamento, chip e plataforma separados. A Global entrega a solução completa, integrada e pronta.</p>
+          <a href="#contato" class="btn-link">Solicitar agora <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="investimento">
-<div class="container">
-<h2>Investimento</h2>
-<div class="card" style="text-align:center;">
-<h3>Ativação Completa</h3>
-<p style="font-size:28px;font-weight:700;">R$ 256,00</p>
-<hr style="margin:20px 0;border:1px solid #ffc107;">
-<h3>Mensalidade</h3>
-<p style="font-size:22px;">R$ 39,90 / mês</p>
-<p>Contrato mínimo de 12 meses</p>
-</div>
-</div>
-</section>
+  <!-- ===================== PARA QUEM ===================== -->
+  <section class="section para-quem" id="para-quem">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Uso pessoal e empresarial</div>
+        <h2 class="section-title">A solução ideal para você</h2>
+        <p class="section-sub">Seja um veículo ou uma frota inteira, a Global tem a solução certa.</p>
+      </div>
+      <div class="audience-grid">
+        <div class="audience-card" data-animate>
+          <div class="audience-img audience-personal">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="audience-content">
+            <h3>Uso Pessoal</h3>
+            <p>Quer saber onde está seu carro a qualquer momento? Com a Global, você acompanha pelo aplicativo, sem precisar ligar para ninguém.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Localização em tempo real</li>
+              <li><i class="fas fa-check"></i> Histórico de trajetos</li>
+              <li><i class="fas fa-check"></i> Alertas pelo app</li>
+              <li><i class="fas fa-check"></i> Controle total pelo celular</li>
+            </ul>
+          </div>
+        </div>
+        <div class="audience-card" data-animate>
+          <div class="audience-img audience-business">
+            <i class="fas fa-building"></i>
+          </div>
+          <div class="audience-content">
+            <h3>Empresas e Frotas</h3>
+            <p>Gerencie toda a sua frota de forma eficiente, com visibilidade completa de cada veículo em operação diretamente na plataforma.</p>
+            <ul>
+              <li><i class="fas fa-check"></i> Monitoramento de múltiplos veículos</li>
+              <li><i class="fas fa-check"></i> Relatórios de percurso</li>
+              <li><i class="fas fa-check"></i> Controle operacional direto</li>
+              <li><i class="fas fa-check"></i> Gestão autônoma pela empresa</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="blog">
-<div class="container">
-<h2>Blog - Tecnologia e Rastreamento</h2>
+  <!-- ===================== DIFERENCIAIS ===================== -->
+  <section class="section diferenciais" id="diferenciais">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Por que escolher a Global</div>
+        <h2 class="section-title">Nosso diferencial é a autonomia</h2>
+        <p class="section-sub">Um modelo que coloca o controle na mão de quem realmente importa: você.</p>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-card" data-animate>
+          <div class="diff-icon"><i class="fas fa-hand-holding-heart"></i></div>
+          <h3>Autonomia Total</h3>
+          <p>Você acompanha e gerencia tudo pelo aplicativo, sem depender de terceiros ou aguardar retorno de central.</p>
+        </div>
+        <div class="diff-card" data-animate>
+          <div class="diff-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Tempo Real</h3>
+          <p>Localização atualizada em tempo real, com histórico de rotas e dados completos sempre ao seu alcance.</p>
+        </div>
+        <div class="diff-card" data-animate>
+          <div class="diff-icon"><i class="fas fa-puzzle-piece"></i></div>
+          <h3>Solução Completa</h3>
+          <p>Equipamento, chip, plataforma e app entregues juntos, configurados e prontos para uso imediato.</p>
+        </div>
+        <div class="diff-card" data-animate>
+          <div class="diff-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+          <h3>Escalável</h3>
+          <p>Funciona para um veículo pessoal ou uma frota com dezenas de carros. A solução cresce com sua necessidade.</p>
+        </div>
+        <div class="diff-card" data-animate>
+          <div class="diff-icon"><i class="fas fa-check-double"></i></div>
+          <h3>Transparência</h3>
+          <p>Sabemos o que entregamos e comunicamos com clareza. Você sabe exatamente o que está contratando.</p>
+        </div>
+        <div class="diff-card" data-animate>
+          <div class="diff-icon"><i class="fas fa-phone-alt"></i></div>
+          <h3>Suporte Direto</h3>
+          <p>Nossa equipe está disponível para garantir que você configure tudo corretamente desde o primeiro dia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="blog-article">
-<h3>Rastreamento Veicular em Paulo Afonso - BA</h3>
-<p>O rastreamento veicular em Paulo Afonso tem se tornado essencial para quem deseja mais controle sobre seu veículo.</p>
-<p>A Global Rastreamento oferece plataforma moderna com chip incluso e aplicativo completo para gestão veicular.</p>
-</div>
+  <!-- ===================== AVISO IMPORTANTE ===================== -->
+  <section class="section aviso-section">
+    <div class="container">
+      <div class="aviso-box" data-animate>
+        <div class="aviso-icon"><i class="fas fa-info-circle"></i></div>
+        <div class="aviso-content">
+          <h3>Importante entender nosso modelo</h3>
+          <p>
+            A Global Rastreamento é uma solução voltada para <strong>autonomia e controle direto</strong>.
+            Nosso diferencial é dar ao cliente total visibilidade e gestão do seu veículo ou frota pelo aplicativo.
+          </p>
+          <p>
+            <strong>Não operamos central de monitoramento 24h.</strong>
+            O acompanhamento é feito diretamente por você, de forma simples e prática pelo celular.
+            Se você busca um modelo com central de atendimento em casos de ocorrência, recomendamos avaliar outras opções do mercado.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="blog-article">
-<h3>Gestão de Frota Empresarial em Paulo Afonso</h3>
-<p>Empresas podem reduzir custos utilizando tecnologia de gestão de frota.</p>
-<p>Com controle de rotas e relatórios estratégicos, sua empresa ganha eficiência operacional.</p>
-</div>
+  <!-- ===================== CONTATO ===================== -->
+  <section class="section contato" id="contato">
+    <div class="container">
+      <div class="contato-wrapper">
+        <div class="contato-info" data-animate>
+          <div class="section-badge">Vamos conversar</div>
+          <h2 class="section-title left">Pronto para ter controle total do seu veículo?</h2>
+          <p>Entre em contato com nossa equipe. Vamos entender sua necessidade e indicar a melhor solução para você.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+              <div>
+                <span class="contact-label">WhatsApp</span>
+                <a href="https://wa.me/5500000000000" target="_blank" class="contact-value">(00) 00000-0000</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <span class="contact-label">E-mail</span>
+                <a href="mailto:contato@globalrastreamento.com.br" class="contact-value">contato@globalrastreamento.com.br</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+              <div>
+                <span class="contact-label">Instagram</span>
+                <a href="https://instagram.com/globalrastreamento" target="_blank" class="contact-value">@globalrastreamento</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contato-form" data-animate>
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="nome">Seu nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Como podemos te chamar?" required />
+              <span class="form-error" id="nome-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp</label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required />
+              <span class="form-error" id="whatsapp-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="tipo">Tipo de uso</label>
+              <select id="tipo" name="tipo" required>
+                <option value="" disabled selected>Selecione...</option>
+                <option value="pessoal">Uso pessoal (1 veículo)</option>
+                <option value="pequena-frota">Pequena frota (2 a 10 veículos)</option>
+                <option value="frota-media">Frota média (11 a 50 veículos)</option>
+                <option value="frota-grande">Frota grande (50+ veículos)</option>
+              </select>
+              <span class="form-error" id="tipo-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="mensagem">Mensagem (opcional)</label>
+              <textarea id="mensagem" name="mensagem" rows="3" placeholder="Conta um pouco mais sobre sua necessidade..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+              <i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp
+            </button>
+            <p class="form-note"><i class="fas fa-lock"></i> Seus dados são usados apenas para contato. Nada de spam.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</div>
-</section>
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <span class="logo-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <span class="logo-text">Global<span class="logo-accent">Rastreamento</span></span>
+          </a>
+          <p>Controle total do seu veículo ou frota na palma da mão. Tecnologia completa para uso pessoal e empresarial.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#como-funciona">Como Funciona</a></li>
+            <li><a href="#o-que-inclui">O Que Inclui</a></li>
+            <li><a href="#para-quem">Para Quem</a></li>
+            <li><a href="#diferenciais">Diferenciais</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Solução</h4>
+          <ul>
+            <li><a href="#">Rastreamento Pessoal</a></li>
+            <li><a href="#">Gestão de Frota</a></li>
+            <li><a href="#">Plataforma</a></li>
+            <li><a href="#">Aplicativo</a></li>
+          </ul>
+        </div>
+        <div class="footer-note">
+          <h4>Sobre o Serviço</h4>
+          <p>A Global Rastreamento é uma solução de <strong>autonomia e controle direto</strong>. Não operamos central de monitoramento 24h — o acompanhamento é feito pelo próprio cliente pelo aplicativo.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Global Rastreamento. Todos os direitos reservados.</p>
+        <p>Uso pessoal e empresarial &middot; Rastreamento com autonomia</p>
+      </div>
+    </div>
+  </footer>
 
-<section style="text-align:center;">
-<h2>Baixe o Aplicativo</h2>
-<a href="https://apps.apple.com/br/app/global-manager/id6744368781" class="btn btn-outline">iOS</a>
-<a href="https://play.google.com/store/apps/details?id=com.app.globalrastreamento.net" class="btn btn-primary">Android</a>
-<br><br>
-<a href="https://globalrastreamento2020-maker.github.io/clienteveiculos/" class="btn btn-outline">Formulário de Cadastro</a>
-</section>
+  <!-- Botão WhatsApp Flutuante -->
+  <a href="https://wa.me/5500000000000" target="_blank" class="whatsapp-float" aria-label="Falar no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Falar no WhatsApp</span>
+  </a>
 
-<footer>
-<p>Global Rastreamento - Tecnologia em Gestão Veicular</p>
-<p>Paulo Afonso - Bahia</p>
-<br>
-<a href="https://www.instagram.com/global_rastreamento_veicular/">Instagram</a>
-<a href="https://www.facebook.com/globalrastreamentoveicular/">Facebook</a>
-<a href="https://www.youtube.com/@globaltecnologiait">YouTube</a>
-<br><br>
-<a href="https://privacy.globalrastreamento.net.br/">Política de Privacidade</a>
-</footer>
+  <!-- Voltar ao topo -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
-<!-- CHAT HALK ESTRATÉGICO -->
-<script
-  id="Halk"
-  src="https://webchat.halk.io/api/widget?chatbotID=cmk1sti4a00iw5bi09c7jiqes&ref=widget">
-</script>
-
-  <style>
-
-/* ===== ESTILO EMPRESA GRANDE - HALK ===== */
-
-@media (max-width: 768px) {
-
-  /* Aumenta botão */
-  iframe[id*="Halk"],
-  div[id*="Halk"] iframe {
-    transform: scale(1.4) !important;
-    transform-origin: bottom right !important;
-    bottom: 90px !important; /* sobe do rodapé */
-  }
-
-  /* Efeito pulsar */
-  @keyframes pulseHalk {
-    0% { transform: scale(1.4); }
-    50% { transform: scale(1.48); }
-    100% { transform: scale(1.4); }
-  }
-
-  iframe[id*="Halk"] {
-    animation: pulseHalk 2.5s infinite;
-    box-shadow: 0 0 20px rgba(255,193,7,0.6) !important;
-    border-radius: 50% !important;
-  }
-
-  /* Balão Fale Conosco */
-  .chat-label {
-    position: fixed;
-    bottom: 150px;
-    right: 20px;
-    background: #ffc107;
-    color: #000;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    z-index: 9999;
-    animation: fadeIn 1.5s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {opacity:0; transform: translateY(10px);}
-    to {opacity:1; transform: translateY(0);}
-  }
-
-}
-
-</style>
-
-<div class="chat-label">💬 Fale Conosco</div>
+  <script src="js/main.js"></script>
 </body>
-
 </html>
-
-
-
-
